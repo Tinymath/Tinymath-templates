@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TinyMath</title>
+
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 25px 0 10px;
+      font-size: 36px;
+      letter-spacing: 1px;
+    }
+
+    /* Search bar */
+    #searchBar {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    #buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 20px;
+    }
+
+    .game-card {
+      width: 170px;
+      text-align: center;
+    }
+
+    .game-card img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .game-card img:hover {
+      transform: scale(1.05);
+    }
+
+    .game-card button {
+      width: 150px;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      background: #1e90ff;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .game-card button:hover {
+      background: #0f6ed6;
+    }
+
+    /* Header for loaded game */
+    .game-header {
+      width: 100%;
+      padding: 15px;
+      background: #222;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+
+    .fullscreen-btn,
+    .exit-btn {
+      float: right;
+      margin-right: 20px;
+      padding: 8px 15px;
+      background: #1e90ff;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .fullscreen-btn:hover,
+    .exit-btn:hover {
+      background: #0f6ed6;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>TinyMath</h1>
+
+<input id="searchBar" type="text" placeholder="Search games...">
+
+<div id="buttons"></div>
+
+<script>
+  const games = [];
+
+  function add(name, url, img = null) {
+    games.push({ name, url, img });
+
+    const card = document.createElement("div");
+    card.className = "game-card";
+    card.dataset.name = name.toLowerCase();
+
+    if (img) {
+      const image = document.createElement("img");
+      image.src = img;
+      image.onclick = () => loadGame(url);
+      card.appendChild(image);
+    }
+
+    const button = document.createElement("button");
+    button.textContent = name;
+    button.onclick = () => loadGame(url);
+    card.appendChild(button);
+
+    document.getElementById("buttons").appendChild(card);
+  }
+
+  // Search filter
+  document.getElementById("searchBar").addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll(".game-card").forEach(card => {
+      card.style.display = card.dataset.name.includes(query) ? "block" : "none";
+    });
+  });
+
+  function loadGame(url) {
+    fetch(url)
+      .then(res => res.text())
+      .then(html => {
+
+        // Reinject CSS so header styles still work
+        const css = `
+          <style>
+            .game-header {
+              width: 100%;
+              padding: 15px;
+              background: #222;
+              color: white;
+              font-size: 24px;
+              text-align: center;
+              position: fixed;
+              top: 0;
+              left: 0;
+              z-index: 9999;
+            }
+            .fullscreen-btn,
+            .exit-btn {
+              float: right;
+              margin-right: 20px;
+              padding: 8px 15px;
+              background: #1e90ff;
+              border: none;
+              border-radius: 5px;
+              color: white;
+              cursor: pointer;
+              margin-left: 10px;
+            }
+            .fullscreen-btn:hover,
+            .exit-btn:hover {
+              background: #0f6ed6;
+            }
+          </style>
+        `;
+
+        const header = `
+          <div class="game-header">
+            ⭐ Tiny Math ⭐
+            <button class="exit-btn" onclick="location.reload()">Exit</button>
+            <button class="fullscreen-btn" onclick="document.documentElement.requestFullscreen()">
+              Fullscreen
+            </button>
+          </div>
+          <div style="height:70px;"></div>
+        `;
+
+        document.open();
+        document.write(css + header + html);
+        document.close();
+      });
+  }
+
+  // Example button
+  add(
+    "eeee",
+    "https://raw.githubusercontent.com/cloverdust/Tiny-math/refs/heads/main/Scramjet/index.html",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG9rdr60XAyZweqcfLA2wWpRyRsS4IErjATUXkZ8wzbhRlAVE:https://help.figma.com/hc/article_attachments/25258750638999&s"
+  );
+</script>
+
+</body>
+</html>
