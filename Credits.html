@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Credits</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #1f2933 0, #020617 55%, #000 100%);
+      color: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .credits-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      height: 80vh;
+      overflow: hidden;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.85);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      backdrop-filter: blur(16px);
+    }
+
+    .credits-header {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .credits-header h1 {
+      font-size: 1.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .credits-header p {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .glow-orbit {
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(129, 140, 248, 0.18), transparent 55%);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      animation: orbit 18s linear infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes orbit {
+      0% {
+        transform: translate3d(-10px, 10px, 0) rotate(0deg);
+      }
+      100% {
+        transform: translate3d(10px, -10px, 0) rotate(3deg);
+      }
+    }
+
+    .credits-scroll {
+      position: absolute;
+      inset: 0;
+      padding: 80px 40px 40px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      mask-image: linear-gradient(to top, transparent 0%, black 20%, black 80%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%, black 80%, transparent 100%);
+    }
+
+    .credits-content {
+      text-align: center;
+      animation: scrollUp 40s linear infinite;
+      transform-origin: center bottom;
+    }
+
+    @keyframes scrollUp {
+      0% {
+        transform: translateY(60%) scale(1.05);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120%) scale(0.9);
+        opacity: 0;
+      }
+    }
+
+    .credits-block {
+      margin-bottom: 40px;
+    }
+
+    .credits-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .credits-names {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #e5e7eb;
+      line-height: 1.7;
+    }
+
+    .credits-names span {
+      display: block;
+    }
+
+    .divider {
+      width: 80px;
+      height: 1px;
+      margin: 26px auto 18px;
+      background: linear-gradient(to right, transparent, #4f46e5, transparent);
+      opacity: 0.7;
+    }
+
+    .logo-mark {
+      font-size: 2.4rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #c7d2fe;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    .footer-note {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: #6b7280;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .pulse-dot {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      animation: pulse 1.8s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 16px rgba(34, 197, 94, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .credits-wrapper {
+        height: 85vh;
+        margin: 0 16px;
+      }
+
+      .credits-scroll {
+        padding: 80px 22px 30px;
+      }
+
+      .credits-header h1 {
+        font-size: 1.2rem;
+        letter-spacing: 0.18em;
+      }
+
+      .logo-mark {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="credits-wrapper">
+    <div class="glow-orbit"></div>
+
+    <div class="credits-header">
+      <h1>Credits</h1>
+      <p>A small thank you to the team</p>
+    </div>
+
+    <div class="credits-scroll">
+      <div class="credits-content">
+        <div class="credits-block">
+          <div class="logo-mark">Tinymath</div>
+          <div class="tagline">A gaming project crafted with care</div>
+          <div class="divider"></div>
+        </div>
+
+        <div class="credits-block">
+          <div class="credits-title">Contact</div>
+          <div class="credits-names">
+            <span>j.ome.f.arit.1.4@gmail.com</span>
+          </div>
+        </div>
+
+        <div class="credits-block">
+          <div class="credits-title">Design</div>
+          <div class="credits-names">
+            <span>Imsupergoodatdoomspire or crashout (as his padlet username)</span>
+            
+          </div>
+        </div>
+
+        <div class="credits-block">
+          <div class="credits-title">Development</div>
+          <div class="credits-names">
+            <span>Used html</span>
+           
+          </div>
+        </div>
+
+        <div class="credits-block">
+          <div class="credits-title">Website credits</div>
+          <div class="credits-names">
+            <span>Classroom6x</span>
+          </div>
+        </div>
+
+        <div class="credits-block">
+          <div class="credits-title">Special thanks</div>
+          <div class="credits-names">
+            <span>Our users</span>
+            <span>Friends & family</span>
+          </div>
+        </div>
+
+        <div class="credits-block">
+          <div class="divider"></div>
+          <div class="credits-names">
+            <span>Made with passion</span>
+            <span>2026</span>
+          </div>
+          <div class="footer-note">End of credits</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pulse-dot"></div>
+  </div>
+</body>
+</html>
