@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Scramjet One‑File Loader</title>
+  <style id="dynamic-style"></style>
+</head>
+<body>
+
+<h2>Scramjet One‑File Loader</h2>
+<pre id="log"></pre>
+
+<script>
+const CDN = "https://cdn.jsdelivr.net/gh/Destroyed12121/staticsjv2/";
+
+async function loadFile(name) {
+  const url = CDN + name;
+  log("Fetching " + name);
+  const res = await fetch(url);
+  return await res.text();
+}
+
+function log(msg) {
+  document.getElementById("log").textContent += msg + "\n";
+}
+
+(async () => {
+  // Fetch all files
+  const [
+    bareworker,
+    embed,
+    indexhtml,
+    nthtml,
+    readme,
+    scriptjs,
+    stylecss,
+    swjs
+  ] = await Promise.all([
+    loadFile("bareworker.js"),
+    loadFile("embed.html"),
+    loadFile("index.html"),
+    loadFile("NT.html"),
+    loadFile("README.md"),
+    loadFile("script.js"),
+    loadFile("style.css"),
+    loadFile("sw.js")
+  ]);
+
+  // Inject CSS
+  document.getElementById("dynamic-style").textContent = stylecss;
+
+  // Inject main script
+  const s = document.createElement("script");
+  s.textContent = scriptjs;
+  document.body.appendChild(s);
+
+  // Register service worker dynamically
+  if ("serviceWorker" in navigator) {
+    const blob = new Blob([swjs], { type: "text/javascript" });
+    const swURL = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swURL).then(() => {
+      log("Service worker registered");
+    });
+  }
+
+  log("All files loaded successfully");
+})();
+</script>
+
+</body>
+</html>
