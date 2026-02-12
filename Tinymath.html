@@ -159,36 +159,49 @@
 
        
         const css = `
-          <style>
-            .game-header {
-              width: 100%;
-              padding: 0.2px;
-              background: #222;
-              color: white;
-              font-size: 24px;
-              text-align: center;
-              position: fixed;
-              top: 0;
-              left: 0;
-              z-index: 9999;
-            }
-            .fullscreen-btn,
-            .exit-btn {
-              float: right;
-              margin-right: 20px;
-              padding: 8px 15px;
-              background: #1e90ff;
-              border: none;
-              border-radius: 5px;
-              color: white;
-              cursor: pointer;
-              margin-left: 10px;
-            }
-            .fullscreen-btn:hover,
-            .exit-btn:hover {
-              background: #0f6ed6;
-            }
-          </style>
+        <style>
+  body {
+    font-family: inherit;
+    margin: 0;
+  }
+
+  .game-header {
+    width: 100%;
+    padding: 8px 0;
+    background: #222;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    font-family: inherit; /* match page font */
+  }
+
+  .fullscreen-btn,
+  .exit-btn {
+    float: right;
+    margin-right: 20px;
+    padding: 8px 15px;
+    background: #1e90ff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .fullscreen-btn:hover,
+  .exit-btn:hover {
+    background: #0f6ed6;
+  }
+
+  /* Hide header in fullscreen */
+  :fullscreen .game-header {
+    display: none;
+  }
+</style>
         `;
 
         const header = `
