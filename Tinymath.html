@@ -1,5 +1,76 @@
 
- <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>"> </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <style>
+    /* Fullscreen overlay */
+    #announcement {
+      position: fixed;
+      inset: 0; /* top:0; right:0; bottom:0; left:0 */
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    /* Announcement box */
+    #announcement-content {
+      background: #ffffff;
+      color: #222;
+      padding: 20px 30px;
+      max-width: 500px;
+      width: 90%;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    /* Close button */
+    #announcement-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      border: none;
+      background: transparent;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Fullscreen announcement -->
+  <div id="announcement">
+    <div id="announcement-content">
+      <button id="announcement-close">&times;</button>
+      <h2>🚨ANNOUNCEMENT🚨</h2>
+      <p>
+        WE MADE A NEW DISCORD! JOIN IT TO HELP MAKE TINYMATH V2. TINYMATH V2 WILL INCLUDE PROXY, MORE GAMES, SAVES, AND MANY MORE UPDATES. JOIN NOW HERE discord.gg/cFbRg74J
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const announcement = document.getElementById('announcement');
+    const closeBtn = document.getElementById('announcement-close');
+
+    // Close on button click
+    closeBtn.addEventListener('click', () => {
+      announcement.style.display = 'none';
+    });
+
+    // Optional: close on click outside the box
+    announcement.addEventListener('click', (e) => {
+      if (e.target === announcement) {
+        announcement.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html> <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>"> </head>
 <meta name="description" content="Why download games while you have tinymath? Tinymath give a superior number of your favorite games like retro bowl and many others.">
 <!DOCTYPE html>
 <html>
