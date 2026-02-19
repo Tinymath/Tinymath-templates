@@ -1,4 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dropdown Button</title>
+    <style>
+        .menu-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-family: sans-serif;
+        }
 
+        .menu-btn {
+            padding: 8px 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .menu-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            margin-top: 5px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            min-width: 150px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .dropdown a:hover {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu-container">
+    <button class="menu-btn" onclick="toggleMenu()">books</button>
+    <div class="dropdown" id="dropdownMenu">
+        <a href="https://tinymath.codehs.me">book 1</a>
+        <a href="https://tinymath.weebly.com">book 2</a>
+        <a href="https://school-classroom77.weebly.com">book 3</a>
+    </div>
+</div>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
