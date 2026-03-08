@@ -1,4 +1,72 @@
-<html lang="en"><head><script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <style>
+    /* Fullscreen overlay */
+    #announcement {
+      position: fixed;
+      inset: 0; /* top:0; right:0; bottom:0; left:0 */
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    /* Announcement box */
+    #announcement-content {
+      background: #ffffff;
+      color: #222;
+      padding: 20px 30px;
+      max-width: 500px;
+      width: 90%;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    /* Close button */
+    #announcement-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      border: none;
+      background: transparent;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Fullscreen announcement -->
+  <div id="announcement">
+    <div id="announcement-content">
+      <button id="announcement-close">&times;</button>
+      <h2>🚨ANNOUNCEMENT🚨</h2>
+      <p>
+         tinymath v2 is here and i will fix the images so dont worry
+    </div>
+  </div>
+
+  <script>
+    const announcement = document.getElementById('announcement');
+    const closeBtn = document.getElementById('announcement-close');
+
+    // Close on button click
+    closeBtn.addEventListener('click', () => {
+      announcement.style.display = 'none';
+    });
+
+    // Optional: close on click outside the box
+    announcement.addEventListener('click', (e) => {
+      if (e.target === announcement) {
+        announcement.style.display = 'none';
+      }
+    });
+  </script><html lang="en"><head><script>
 const CDN_BASE = "https://cdn.jsdelivr.net/gh/Tinymath/v2/";
 
 // Add ONE image for ONE HTML file
